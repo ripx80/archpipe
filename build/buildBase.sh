@@ -10,15 +10,18 @@ set -e
 HOSTNAME="node"
 
 # setup system
-pacman -Sy --noconfirm && pacman -S arch-install-scripts expect tar --noconfirm
+pacman -Syy --noconfirm && pacman -S arch-install-scripts expect tar --noconfirm
 
 export ROOTFS=$(mktemp -d ${TMPDIR:-/var/tmp}/rootfs-archlinux-XXXXXXXXXX)
 chmod 755 $ROOTFS
+# now this packages are a dep of base
+# iproute2
+# systemd-sysvcompat
+# pciutils
 
 # packages to ignore for space savings
 PKGIGNORE=(
     dhcpcd
-    iproute2
     jfsutils
     linux
     lvm2
@@ -28,11 +31,9 @@ PKGIGNORE=(
     nano
     netctl
     openresolv
-    pciutils
     pcmciautils
     reiserfsprogs
     s-nail
-    systemd-sysvcompat
     usbutils
     vi
     xfsprogs
