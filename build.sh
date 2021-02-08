@@ -1,11 +1,21 @@
 #!/bin/sh
 
+set -e -o pipefail
+
 WORKDIR=$(pwd)
 BUILD="ripx80/archbuild:latest"
 BASE="ripx80/archbase:latest"
 DESK="ripx80/archdesk:latest"
 
 echo "remove old images and artefacts"
+
+if [ ! -d $WORKDIR/artefacts ]; then
+    mkdir $WORKDIR/artefacts
+fi
+
+if [ ! -d $WORKDIR/base ]; then
+    mkdir $WORKDIR/base
+fi
 
 if [ "$(ls -A $WORKDIR/artefacts)" ]; then
     rm $WORKDIR/artefacts/*

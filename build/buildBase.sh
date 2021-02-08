@@ -204,6 +204,7 @@ EOF
 mkdir -p artefacts
 tar --numeric-owner --xattrs --acls -C $ROOTFS -czf "/artefacts/archbase.tar.gz" .
 chmod 766 /artefacts/archbase.tar.gz
+chown -R 1000.1000 artefacts/
 # clear pacman db and other stuff
 
 # add iptables stuff
